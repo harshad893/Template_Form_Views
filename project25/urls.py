@@ -23,5 +23,6 @@ urlpatterns = [
     path('Cbv_TemplateView/',Cbv_TemplateView.as_view(),name='Cbv_TemplateView'),
     path('urltemp/',TemplateView.as_view(template_name='temp2.html'),name='urltemp'),
     path('Cbv_FormView/',Cbv_FormView.as_view(),name='Cbv_FormView'),
-
+    path('StudentView/',StudentView.as_view(),name='StudentView'),
+    path('StudentList/',StudentList.as_view(),name='StudentList'),
 ]

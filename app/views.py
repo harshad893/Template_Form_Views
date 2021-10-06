@@ -1,10 +1,11 @@
 from django.http.response import HttpResponse
 from django.shortcuts import render
-from django.views.generic import TemplateView,FormView
+from django.views.generic import TemplateView,FormView,ListView
 # Create your views here.
 from django.forms import *
 
-from app.forms import NameForm
+from app.forms import NameForm,StudentForm
+from app.models import *
 
 class Cbv_TemplateView(TemplateView):
     template_name='template1.html'
@@ -27,3 +28,18 @@ class Cbv_FormView(FormView):
 
     def form_valid(self,form):
         return HttpResponse(str(form.cleaned_data))
+
+class StudentView(FormView):
+    template_name='student.html'
+    form_class=StudentForm
+
+    def form_valid(self,form):
+        form.save()
+        return HttpResponse('data is inserted Successfully')
+
+class StudentList(ListView):
+    model=Student
+    
+    #queryset=Student.objects.filter(name='BBB')
+    context_object_name='students'
+    ordering=['name']
